@@ -1,0 +1,32 @@
+//linecount is a combination of the mycat and mywc command,
+//counting the amount of lines and displaying the content for a text file.
+//linecount works as follows:
+//node linecount.js file.txt
+
+const fs = require('fs')
+const filename = process.argv[2];
+
+console.log('Welcome to linecount!\n')
+
+//mycat implementation
+const readlines = fs.readFileSync(filename, 'utf-8')
+console.log(readlines);
+
+//mystery lines
+if (readlines[readlines.length - 1] === '\n') {
+  const splitlinesmystery = readlines.split('\n').length
+  const mysterylines = splitlinesmystery - 1
+  console.log('amount of lines: ', mysterylines)
+  return;
+};
+
+//no lines
+if (readlines === '') {
+  console.log('amount of lines: none')
+  return;
+};
+
+//mywc implementation
+const splitlines = readlines.split('\n').length
+console.log('amount of lines: ', splitlines);
+
